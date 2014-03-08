@@ -18,9 +18,6 @@
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  # Enable Berkshelf support
-  config.berkshelf.enabled = true
-
   config.vm.box = "trusty64"
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
 
@@ -37,25 +34,27 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :inline => "apt-get autoremove -y"
 
    # Enable and configure chef solo
-    config.vm.provision :chef_solo do |chef|
-      chef.add_recipe "app::packages"
-      chef.json = {
-        :app => {
-          # Project name
-          :name => project_name,
+   config.vm.provision :chef_solo do |chef|
+     
+     config.omnibus.chef_version = :latest
+     
+     chef.json = {
+       :app => {
+         # Project name
+         :name => project_name,
 
-          # Server name and alias(es) for Apache vhost
-          :server_name => project_name + ".local",
-          :server_aliases => [ "www." + project_name + ".local" ],
+         # Server name and alias(es) for Apache vhost
+         :server_name => project_name + ".local",
+         :server_aliases => [ "www." + project_name + ".local" ],
 
-          # Document root for Apache vhost
-          :docroot => "/var/www/" + project_name + "/public",
+         # Document root for Apache vhost
+         :docroot => "/var/www/" + project_name + "/public",
 
-          # General packages
-          :packages => %w{ vim git screen curl },
+         # General packages
+         :packages => %w{ vim git screen curl },
    
-        }
-      }
-    end
+       }
+     }
+   end
 
 end
