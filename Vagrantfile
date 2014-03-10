@@ -21,6 +21,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "trusty64"
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
 
+  # Set share folder
+  config.vm.synced_folder "./" , "/var/www/" + project_name + "/", :mount_options => ["dmode=777", "fmode=666"]
+
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.vm.hostname =  project_name + ".local"
@@ -37,9 +40,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
    config.vm.provision :chef_solo do |chef|
      
      config.omnibus.chef_version = :latest
-     
+
+     chef.cookbooks_path = "cookbooks"
+     chef.add_recipe "apache2"
+     chef.add_recipe "php5"
+
      chef.json = {
-       :app => {
          # Project name
          :name => project_name,
 
@@ -53,7 +59,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
          # General packages
          :packages => %w{ vim git screen curl },
    
-       }
      }
    end
 
