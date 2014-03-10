@@ -1,9 +1,12 @@
 #!/bin/bash
 
-#wget http://download.virtualbox.org/virtualbox/4.3.6/virtualbox-4.3_4.3.6-91406~Ubuntu~raring_amd64.deb
-#wget http://download.virtualbox.org/virtualbox/4.3.6/VBoxGuestAdditions_4.3.6.iso 
-#sudo dpkg -i virtualbox-4.3_4.3.6-91406~Ubuntu~raring_amd64.deb
-#sudo apt-get install vagrant ruby gem
+wget -P /tmp http://download.virtualbox.org/virtualbox/4.3.8/virtualbox-4.3_4.3.8-92456~Ubuntu~raring_amd64.deb
+wget -P /tmp http://download.virtualbox.org/virtualbox/4.3.8/VBoxGuestAdditions_4.3.8.iso
+sudo dpkg -i /tmp/virtualbox-4.3_4.3.8-92456~Ubuntu~raring_amd64.deb
+sudo mkdir /media/iso
+sudo mount -o loop /tmp/virtualbox-4.3_4.3.8-92456~Ubuntu~raring_amd64.deb /media/iso
+
+sudo apt-get install vagrant ruby gem
 
 vagrant plugin install vagrant-hostmanager
 vagrant plugin install vagrant-omnibus
