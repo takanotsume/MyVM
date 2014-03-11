@@ -46,6 +46,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      chef.add_recipe "apache2"
      chef.add_recipe "php5"
      chef.add_recipe "redis"
+     chef.add_recipe "varnish"
 
      chef.json = {
          # Project name
