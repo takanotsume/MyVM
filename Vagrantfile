@@ -42,8 +42,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      config.omnibus.chef_version = :latest
 
      chef.cookbooks_path = "cookbooks"
+     chef.add_recipe "packages"
      chef.add_recipe "apache2"
      chef.add_recipe "php5"
+     chef.add_recipe "redis"
 
      chef.json = {
          # Project name
