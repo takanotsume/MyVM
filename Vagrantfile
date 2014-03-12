@@ -11,7 +11,7 @@
   ip_address = "192.168.33.10"
 
   # The project name is base for directories, hostname and alike
-  project_name = "myvagrant"
+  project_name = "myvm"
 
 # Vagrant configuration
 #################################
@@ -26,9 +26,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
-  config.vm.hostname =  project_name + ".local"
+  config.vm.hostname =  project_name
   config.vm.network :private_network, ip: ip_address
-  config.hostmanager.aliases = [ "www." + project_name + ".local" ]
   config.vm.provision :hostmanager
 
   # Make sure that the newest version of Chef have been installed

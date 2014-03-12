@@ -1,1 +1,9 @@
+# IDE user specific files #
+###########################
+.iws
+workspace.xml
+tasks.xml
+.idea
+# Vagrant #
+###########
 .vagrant

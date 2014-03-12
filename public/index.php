@@ -76,7 +76,19 @@ if ($m->addServer('localhost', 11211)) {
 				<i class="icon-lightbulb icon-4x"></i>
 				<h1>It works!</h1>
 			</div>
-			<p class="lead">The Virtual Machine is up and running, yay! Here's some additional information you might need.</p>
+			<p class="lead">Your Virtual Machine is up and running, yay! Here's some additional information you might need.</p>
+
+            <h3>Installed OS</h3>
+			<table class="table table-striped">
+				<tr>
+					<td>OS Version</td>
+					<td><?php
+                        exec('lsb_release -a', $output);
+                        echo implode('<br />', $output);
+                        ?></td>
+				</tr>
+            </table>
+            
 
 			<h3>Installed software</h3>
 			<table class="table table-striped">

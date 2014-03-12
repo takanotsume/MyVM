@@ -1,6 +1,5 @@
 <VirtualHost *:80>
 ServerName <%= @server_name %>
-ServerAlias ServerAlias <% @server_aliases.each do |a| %><%= a %> <% end %>
 DocumentRoot <%= @docroot %>
 </VirtualHost>
 
