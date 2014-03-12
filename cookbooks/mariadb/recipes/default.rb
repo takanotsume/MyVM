@@ -30,7 +30,6 @@ end
 #---
 
 execute "Add mariadb apt repository" do
-  command "apt-get install -y software-properties-common debconf-utils"
   command "apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db"
   command "add-apt-repository 'deb http://mariadb.mirror.nucleus.be//repo/10.0/ubuntu trusty main'"
 end
