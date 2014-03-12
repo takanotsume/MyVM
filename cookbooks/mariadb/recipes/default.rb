@@ -39,5 +39,5 @@ execute "Install mariadb 10.0" do
 end
 
 execute "Install mariadb 10.0" do
-  command "apt-get install -y mariadb-server-10.0"
+  command "apt-get install -y --force-yes mariadb-server-10.0"
 end
